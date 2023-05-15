@@ -1,0 +1,50 @@
+body {
+    background-color: #106fae;
+    overflow: hidden;
+}
+header {
+    background-color: #10559d;
+    padding: 2px;
+    box-shadow: 0 0 3px #000080;
+    overflow-x: hidden;
+    text-align: right;
+
+}
+header li button {
+    background-color: #10559d;
+    border: none;
+    cursor: pointer;
+}
+header li {
+    display: inline;
+    padding-left: 45px;
+    padding-right: 30px;
+    font-size: 20px;
+}
+header li a,
+header li button{
+    color: black;
+    text-decoration: none;
+    padding: 13px;
+    transition: .3s ease;
+
+}
+header ul #logout a:hover{
+    color: darkred;
+}
+header li a:hover,
+header li button:hover{
+    color: #000080;
+}
+.container {
+    float: left;
+}
+
+.text{
+    position: relative;
+    font-weight: 600;
+    color: #000080;
+}
+.ri-settings-4-line {
+    font-size: 28px;
+}

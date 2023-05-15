@@ -8,6 +8,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Service
 @Slf4j
 public class UserService {
@@ -18,8 +21,8 @@ public class UserService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-    public User getUserById(int id){
-        return userRepository.findById(id).orElse(null);
+    public User getUserById(Long id){
+        return userRepository.findById(id);
     }
     public void saveUser(User user){
        userRepository.save(user);
@@ -29,6 +32,12 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setAnimation(0);
         user.setTheme(0);
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String formattedDateTime = currentDateTime.format(formatter);
+        user.setDateOfCreation(formattedDateTime);
+
         user.setRole("ROLE_USER");
         userRepository.save(user);
     }

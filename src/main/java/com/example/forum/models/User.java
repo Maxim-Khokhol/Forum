@@ -3,11 +3,8 @@ package com.example.forum.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "users")
@@ -15,7 +12,7 @@ public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
     @Column(name = "email")
     private String email;
     @Column(name = "active")
@@ -34,8 +31,9 @@ public class User{
     @Column(name = "animation")
     private int animation;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-//    private List<Problem> usersQuestion = new ArrayList<>();
+    @Column(name = "dateOfCreation")
+    private String dateOfCreation;
+
 
 
     public User(String email, String username) {
@@ -45,6 +43,14 @@ public class User{
 
     public User() {
 
+    }
+
+    public String getDateOfCreation() {
+        return dateOfCreation;
+    }
+
+    public void setDateOfCreation(String dateOfCreation) {
+        this.dateOfCreation = dateOfCreation;
     }
 
     public int getTheme() {
@@ -71,11 +77,11 @@ public class User{
         this.role = role;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -27,6 +27,10 @@
         cursor: pointer;
 
     }
+    a {
+        text-decoration: none;
+        color: black;
+    }
 </style>
 <body>
 
@@ -45,15 +49,10 @@
 <#list problems as problem>
     <#if problem.activity == 1>
         <div>
-            <p><b><b>${problem.user.username}:
+            <p><b><b><a href="/userpage/${problem.user.id}">${problem.user.username}: </a>
                     </b>${problem.headline} </b><a href="/mainpage/problem/${problem.id}"
                                                     style="text-decoration: none; color: black">
                     <i class="ri-information-line"></i></a> <b style="color: #2ecc71">Status: Active</b></p>
-        </div>
-    <#elseif problem.activity == 0>
-        <div>
-            <p><b><b>${problem.user.username}:
-                    </b>${problem.headline} </b>  <b style="color: #8B0000">Status: Passive</b></p>
         </div>
     </#if>
 </#list>

@@ -1,6 +1,7 @@
 package com.example.forum.controllers;
 import com.example.forum.models.Problem;
 import com.example.forum.models.User;
+import com.example.forum.repositories.UserRepository;
 import com.example.forum.services.AnswerService;
 import com.example.forum.services.ProblemService;
 import com.example.forum.services.UserService;
@@ -66,17 +67,26 @@ public class ProblemController {
         return "problem-edit";
     }
 
-    @PostMapping( "/mainpage/settings")
-    public String settingsTable(@RequestParam("theme") int theme,
-                                @RequestParam("animation") int animation,
-                                int id){
-        User user = userService.getUserById(id);
-        System.out.println(user.getId());
-        user.setTheme(theme);
-        user.setAnimation(animation);
-        userService.saveUser(user);
-        return "redirect:/mainpage";
-    }
+//    @PostMapping( "/mainpage/settings")
+//    public String settingsTable(@RequestParam("theme") int theme,
+//                                @RequestParam("animation") int animation,
+//                                int id){
+//        User user = userService.getUserById(id);
+//        System.out.println(user.getId());
+//        user.setTheme(theme);
+//        user.setAnimation(animation);
+//        userService.saveUser(user);
+//        return "redirect:/mainpage";
+//    }
+//    @PostMapping("/updateSettings")
+//    public String updateSettings(@RequestParam int theme, @RequestParam int animation, int id) {
+//        User user = userService.getUserById(id);
+//        user.setAnimation(animation);
+//        user.setTheme(theme);
+//        userService.saveUser(user);
+//        return "redirect:/mainpage";
+//    }
+
 
 
 }
