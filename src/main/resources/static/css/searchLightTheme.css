@@ -1,0 +1,21 @@
+.ri-search-line{
+    color: black;
+    cursor: pointer;
+}
+.box{
+    background-color: #d4d3cf;
+    width: 330px;
+    height: 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+.search{
+    width: 240px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 13px;
+}

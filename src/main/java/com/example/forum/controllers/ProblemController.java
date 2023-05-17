@@ -1,17 +1,13 @@
 package com.example.forum.controllers;
 import com.example.forum.models.Problem;
-import com.example.forum.models.User;
-import com.example.forum.repositories.UserRepository;
 import com.example.forum.services.AnswerService;
 import com.example.forum.services.ProblemService;
 import com.example.forum.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -31,8 +27,13 @@ public class ProblemController {
     }
 
     @PostMapping("/mainpage/problem/create")
-    public String createProblem(Problem problem, Principal principal) {
+    public String createProblem(@ModelAttribute("problem") Problem problem,
+                                Principal principal, BindingResult bindingResult, Model model, Long id){
         problemService.saveProblem(problem, principal);
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("user", userService.getUserById(id));
+            return "createQuestion";
+        }
         return "redirect:/mainpage";
     }
 
@@ -50,8 +51,8 @@ public class ProblemController {
     }
 
     @PostMapping("/mainpage/problem/{id}/edit")
-    public String problemUpdate(@PathVariable(value = "id") Long id,
-                                 Principal principal, String headline, String description, int activity) {
+    public String problemUpdate(@PathVariable(value = "id") Long id, String headline, String description, int activity,
+                                Principal principal){
         Problem problem = problemService.getProblemById(id);
         problem.setHeadline(headline);
         problem.setDescription(description);
@@ -67,25 +68,7 @@ public class ProblemController {
         return "problem-edit";
     }
 
-//    @PostMapping( "/mainpage/settings")
-//    public String settingsTable(@RequestParam("theme") int theme,
-//                                @RequestParam("animation") int animation,
-//                                int id){
-//        User user = userService.getUserById(id);
-//        System.out.println(user.getId());
-//        user.setTheme(theme);
-//        user.setAnimation(animation);
-//        userService.saveUser(user);
-//        return "redirect:/mainpage";
-//    }
-//    @PostMapping("/updateSettings")
-//    public String updateSettings(@RequestParam int theme, @RequestParam int animation, int id) {
-//        User user = userService.getUserById(id);
-//        user.setAnimation(animation);
-//        user.setTheme(theme);
-//        userService.saveUser(user);
-//        return "redirect:/mainpage";
-//    }
+
 
 
 

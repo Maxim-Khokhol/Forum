@@ -1,0 +1,107 @@
+#window2 {
+    text-align: center;
+    width: 650px;
+    height: 300px;
+    margin: 10px auto;
+    background: #d4d3cf;
+    border: 1px solid #949492;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+li button {
+    background-color: #949492;
+    border: none;
+    cursor: pointer;
+}
+#window2 .ri-close-line {
+    cursor: pointer;
+    font-size: 25px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+#window .ri-close-line, #window3 .ri-close-line {
+    cursor: pointer;
+    font-size: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+textarea {
+    width: 95%;
+    height: 100px;
+    resize: none;
+    margin-top: 3px;
+    background-color: white;
+    border-radius: 10px;
+    outline: none;
+    border-color: #949492;
+
+}
+
+textarea[name="headline"] {
+    max-height: 2em;
+    margin-top: 40px;
+}
+#window{
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    margin: 10px auto;
+    background: #d4d3cf;
+    border: 1px solid #949492;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+
+}
+#window3 {
+    text-align: center;
+    width: 650px;
+    height: 500px;
+    margin: 10px auto;
+    background: #d4d3cf;
+    border: 1px solid #949492;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: white;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    padding: 10px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+.button2 {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: red;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}

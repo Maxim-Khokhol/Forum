@@ -6,8 +6,12 @@ import com.example.forum.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -19,8 +23,13 @@ public class ProblemService {
 
 
     public void saveProblem(Problem problem, Principal principal){
+
         problem.setUser(getProblemByPrincipal(principal));
         log.info("Saving new {}; Author: {}", problem, problem.getUser().getUsername());
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        String formattedDateTime = currentDateTime.format(formatter);
+        problem.setDateOfCreationProblem(formattedDateTime);
         problemRepository.save(problem);
     }
 

@@ -4,6 +4,11 @@
     <title>Answers</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
+<style>
+    hr {
+        color: black;
+    }
+</style>
 <body>
 <header>
     <#include "header.ftlh">

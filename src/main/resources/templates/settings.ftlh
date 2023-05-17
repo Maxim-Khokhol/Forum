@@ -4,49 +4,44 @@
     <meta charset="UTF-8">
     <title>Settings</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <#if user.theme == 0>
+        <link href="/css/panelDarkTheme.css" rel="stylesheet">
+    <#elseif user.theme == 1>
+        <link href="/css/panelLightTheme.css" rel="stylesheet">
+    </#if>
 </head>
-<style>
-    #window{
-        text-align: center;
-        width: 150px;
-        height: 150px;
-        margin: 10px auto;
-        background: grey;
-        border: 1px solid #10559d;
-        border-radius: 15px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: none;
-
-    }
-    #window .ri-close-line {
-        cursor: pointer;
-        font-size: 25px;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-</style>
 <body>
 <div id="window">
     <i onclick="show('none')" class="ri-close-line"></i>
     <form action="/mainpage/${user.id}/theme" method="post">
+        <br>
         <label for="theme">Theme:</label>
         <select id="theme" name="theme">
-            <option value="1">Light</option>
-            <option value="0">Dark</option>
+            <#if user.theme == 1>
+                <option value="1">Light</option>
+                <option value="0">Dark</option>
+            <#elseif user.theme == 0>
+                <option value="0">Dark</option>
+                <option value="1">Light</option>
+            </#if>
         </select>
+        <br>
         <button type="submit">Save</button>
     </form>
 
     <form action="/mainpage/${user.id}/animation" method="post">
+        <br>
         <label for="animation">Animation:</label>
         <select id="animation" name="animation">
-            <option value="1">Off</option>
-            <option value="0">On</option>
+            <#if user.animation == 1>
+                <option value="1">Off</option>
+                <option value="0">On</option>
+            <#elseif user.animation == 0>
+                <option value="0">On</option>
+                <option value="1">Off</option>
+            </#if>
         </select>
+        <br>
         <button type="submit">Save</button>
     </form>
 

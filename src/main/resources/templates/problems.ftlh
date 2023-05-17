@@ -1,32 +1,14 @@
-<#import "pager.ftlh" as p>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Questions</title>
+    <#if user.theme == 0>
+        <link href="/css/searchDarkTheme.css" rel="stylesheet">
+    <#elseif user.theme == 1>
+        <link href="/css/searchLightTheme.css" rel="stylesheet">
+    </#if>
 </head>
 <style>
-    .box{
-        background-color: #10559d;
-        width: 330px;
-        height: 20px;
-        border-radius: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px;
-    }
-    .search{
-        width: 240px;
-        border: none;
-        outline: none;
-        background: none;
-        font-size: 13px;
-    }
-    .ri-search-line{
-        color: darkblue;
-        cursor: pointer;
-
-    }
     a {
         text-decoration: none;
         color: black;
@@ -35,8 +17,11 @@
 <body>
 
 <header>
+    <#assign username = user.username>
     <#include "header.ftlh">
+
 </header>
+<#include "createQuestion.ftlh">
 <br>
 
 <form action="/mainpage" method="get">
@@ -46,6 +31,7 @@
     </div>
 </form>
 <br>
+<h2><b>Questions</b> <i onclick="show2('block')" class="ri-add-line"></i></h2>
 <#list problems as problem>
     <#if problem.activity == 1>
         <div>
@@ -57,16 +43,6 @@
     </#if>
 </#list>
 
-<#if user.username??>
-    <h3>Create new question</h3>
-    <form action="/mainpage/problem/create" method="POST">
-        <input type="text" name="headline" value="headline" /><br><br>
-        <input type="text" name="description" value="description"/><br><br>
-        <input type="hidden" name="activity" value="1"/>
-        <input type="submit" value="Add Question" />
-    </form>
-
-</#if>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const icon = document.querySelector('.ri-search-line');

@@ -24,7 +24,6 @@
     </tr>
 </table>
 <br>
-<#if user.username??>
 <#list problems as problem>
     <#if problem.activity == 0 && userProblem.id == problem.getUser().id>
         <div>
@@ -34,6 +33,5 @@
         </div>
     </#if>
 </#list>
-</#if>
 </body>
 </html>

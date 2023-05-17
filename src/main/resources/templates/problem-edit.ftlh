@@ -29,14 +29,14 @@
             }
         }
 
-        // Проверяем, сохранено ли состояние флажка в localStorage
+
         if (localStorage.getItem('activityChecked') === 'true') {
             activityCheckbox.checked = true;
         }
 
-        // Добавляем обработчик события на флажок
+
         activityCheckbox.addEventListener('change', () => {
-            // Сохраняем состояние флажка в localStorage
+
             localStorage.setItem('activityChecked', activityCheckbox.checked);
         });
     </script>

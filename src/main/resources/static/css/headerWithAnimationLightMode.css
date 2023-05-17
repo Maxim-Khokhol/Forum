@@ -1,0 +1,74 @@
+body {
+    background-color: white;
+    overflow: hidden;
+}
+header {
+    background-color: #d4d3cf;
+    padding: 2px;
+    box-shadow: 0 0 3px #949492;
+    overflow-x: hidden;
+    text-align: right;
+
+}
+header li button {
+    background-color: #d4d3cf;
+    border: none;
+    cursor: pointer;
+}
+header li {
+    display: inline;
+    padding-left: 45px;
+    padding-right: 30px;
+    font-size: 20px;
+}
+header li a,
+header li button{
+    color: black;
+    text-decoration: none;
+    padding: 13px;
+    transition: .3s ease;
+
+}
+header ul #logout a:hover{
+    color: darkred;
+}
+header li a:hover,
+header li button:hover{
+    color: #636362;
+}
+.container {
+    float: left;
+}
+
+.text{
+    position: relative;
+    font-weight: 600;
+    color: black;
+}
+.text.first-text{
+    color: black;
+    font-weight: 600;
+    margin-right: 10px;
+}
+.text.sec-text:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #d4d3cf;
+    border-left: 2px solid black;
+    animation: animate 4s steps(12) infinite;
+}
+@keyframes animate {
+    40%, 60%{
+        left: 100%;
+    }
+    100% {
+        left: 0%;
+    }
+}
+.ri-settings-4-line {
+    font-size: 28px;
+}

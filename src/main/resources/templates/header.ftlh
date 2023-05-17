@@ -1,16 +1,22 @@
+<#assign username = user.username>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <#if user.animation == 0>
+    <#if user.animation == 0 && user.theme == 0>
         <link rel="stylesheet" href="/css/headerWithAnimationDarkMode.css">
-    <#elseif user.animation == 1>
+    <#elseif user.animation == 1 && user.theme == 0>
         <link rel="stylesheet" href="/css/headerWithoutAnimationDarkMode.css">
+    <#elseif user.animation == 0 && user.theme == 1>
+    <link rel="stylesheet" href="/css/headerWithAnimationLightMode.css">
+    <#elseif user.animation == 1 && user.theme == 1>
+    <link rel="stylesheet" href="/css/headerWithoutAnimationLightMode.css">
     </#if>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
+<#if user.username??>
 <#include "settings.ftlh">
 <header>
     <ul>
@@ -19,7 +25,7 @@
         <li><span style="font-size: 25px; font-style: italic;" class="container text sec-text container">be a helper</span> </li>
         <#elseif user.animation == 1>
             <li><span style="font-size: 25px; font-style: italic; text-align: left" class="container" >
-                    <b>Welcome, ${user.getUsername()}</b></span></li>
+                    <b>Welcome, ${username}</b></span></li>
         </#if>
         <li><a href="/mainpage">Main Page</a></li>
         <li id="profile"><a href="/userpage/${user.id}"><i class="ri-user-3-line"></i>Profile</a></li>
@@ -46,6 +52,6 @@
     </script>
 </header>
 
-
+</#if>
 </body>
 </html>

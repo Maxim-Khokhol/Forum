@@ -2,6 +2,7 @@ package com.example.forum.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,15 +14,19 @@ public class User{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "email")
+    @NotEmpty(message = "Email is empty")
+    @Pattern(regexp = ".*@.*", message = "Wrong email")
+    @Column(name = "email", unique = true)
     private String email;
     @Column(name = "active")
     private boolean active;
     @NotEmpty(message = "Username is empty")
     @Size(min = 2, max = 100, message = "Username have to contain from 2 to 100 Symbols")
-    @Column(name = "username")
+    @Column(name = "username" ,unique = true)
     private String username;
-    @Column(name = "password", length = 500)
+    @NotEmpty(message = "Password is empty")
+    @Size(min = 8, max = 100, message = "Password have to contain from 8 to 100 Symbols")
+    @Column(name = "password")
     private String password;
     @Column(name = "role")
     private String role;
