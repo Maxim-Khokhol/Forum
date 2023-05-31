@@ -17,6 +17,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        // returns a collection of rights that the user has
         return Collections.singletonList(new SimpleGrantedAuthority(user.getRole())); //ROLE_USER ROLE_ADMIN
     }
 
@@ -33,7 +34,7 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isAccountNonExpired() {
         return true;
-    }
+    } // account is valid
 
     @Override
     public boolean isAccountNonLocked() {

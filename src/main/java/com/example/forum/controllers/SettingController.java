@@ -1,7 +1,6 @@
 package com.example.forum.controllers;
 
 import com.example.forum.models.User;
-import com.example.forum.repositories.UserRepository;
 import com.example.forum.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

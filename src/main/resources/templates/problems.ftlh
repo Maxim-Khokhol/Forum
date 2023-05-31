@@ -13,6 +13,16 @@
         text-decoration: none;
         color: black;
     }
+    .text-container {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-all;
+        width: 100%;
+        color: black;
+        height: 450px;
+        overflow-y: auto;
+        display: flex;
+    }
 </style>
 <body>
 
@@ -26,7 +36,7 @@
 
 <form action="/mainpage" method="get">
     <div class="box">
-         <input class="search" type="text" name="headline"><br>
+        <input class="search" type="text" name="headline"><br>
         <i typeof="submit" class="ri-search-line"></i>
     </div>
 </form>
@@ -37,9 +47,16 @@
         <div>
             <p><b><b><a href="/userpage/${problem.user.id}">${problem.user.username}: </a>
                     </b>${problem.headline} </b><a href="/mainpage/problem/${problem.id}"
-                                                    style="text-decoration: none; color: black">
+                                                   style="text-decoration: none; color: black">
                     <i class="ri-information-line"></i></a> <b style="color: #2ecc71">Status: Active</b></p>
         </div>
+        <#elseif problem.activity == 0>
+            <div>
+                <p><b><b><a href="/userpage/${problem.user.id}">${problem.user.username}: </a>
+                        </b>${problem.headline} </b><a href="/mainpage/problem/${problem.id}"
+                                                       style="text-decoration: none; color: black">
+                        <i class="ri-information-line"></i></a> <b style="color: darkred">Status: Passive</b></p>
+            </div>
     </#if>
 </#list>
 

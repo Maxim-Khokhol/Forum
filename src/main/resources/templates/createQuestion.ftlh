@@ -15,7 +15,7 @@
 <div id="window2">
     <i onclick="show2('none')" class="ri-close-line"></i>
     <form action="/mainpage/problem/create" method="POST">
-        <textarea name="headline" placeholder="headline" class="custom-textarea"></textarea>
+        <textarea name="headline" placeholder="headline (max size 150 symbols)" class="custom-textarea" maxlength="150"></textarea>
         <textarea name="description" placeholder="description" class="custom-textarea"></textarea><br><br>
         <input type="hidden" name="activity" value="1"/>
         <button type="submit" class="button" style="vertical-align:middle"><span>Create </span></button>
@@ -30,4 +30,5 @@
 </script>
 </body>
 </html>
+
 

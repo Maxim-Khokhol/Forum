@@ -15,25 +15,18 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-    @Column(name = "answer")
+
+    @Column(name = "answer", columnDefinition = "text")
     private String answer;
+
     @Column(name = "idProblem")
     private Long idProblem;
+
+    @Column(name = "dateOfCreationProblem")
+    private String dateOfCreationProblem;
+
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn
     private User user;
-
-    public String getAnswer() {
-        return answer;
-    }
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-    public Long getIdProblem() {
-        return idProblem;
-    }
-    public void setIdProblem(Long idProblem) {
-        this.idProblem = idProblem;
-    }
 
 }

@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -20,6 +22,10 @@ public class AnswerService {
 
     public void saveAnswer(Answer answer, Principal principal){
         answer.setUser(getAnswerByPrinciple(principal));
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        String formattedDateTime = currentDateTime.format(formatter);
+        answer.setDateOfCreationProblem(formattedDateTime);
         answerRepository.save(answer);
     }
 

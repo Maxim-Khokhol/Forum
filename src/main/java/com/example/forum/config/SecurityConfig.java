@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -22,8 +21,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // configure Spring Security
+        //configure authorization
         return http
-                .authorizeRequests()
+                // With Spring Boot 3 Security, we need to write as follows
+                .authorizeHttpRequests()
                 .requestMatchers("/login", "/registration").permitAll()
                 .requestMatchers("/images/**", "/css/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -31,7 +33,9 @@ public class SecurityConfig {
                 .and()
                 .formLogin().loginPage("/login")
                 .loginProcessingUrl("/process_login")
-                .defaultSuccessUrl("/mainpage")
+                // "true" we want Spring Security to always redirect us to this address,
+                // because there may be other pages
+                .defaultSuccessUrl("/mainpage", true)
                 .permitAll()
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
@@ -48,6 +52,9 @@ public class SecurityConfig {
     }
     @Bean
     public PasswordEncoder passwordEncoder() {
+        // encrypt the password using BCryptPasswordEncoder which takes the
+        // password in plain text and hashes it using BCrypt
+
         return new BCryptPasswordEncoder(8);
     }
 }

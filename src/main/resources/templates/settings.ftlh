@@ -9,6 +9,18 @@
     <#elseif user.theme == 1>
         <link href="/css/panelLightTheme.css" rel="stylesheet">
     </#if>
+    <style>
+        .butGray{
+            background-color: #AEA6A6;
+            border: none;
+            color: black;
+        }
+        .select {
+            background-color: #AEA6A6;
+            border: none;
+            color: black;
+        }
+    </style>
 </head>
 <body>
 <div id="window">
@@ -16,7 +28,7 @@
     <form action="/mainpage/${user.id}/theme" method="post">
         <br>
         <label for="theme">Theme:</label>
-        <select id="theme" name="theme">
+        <select class="select" id="theme" name="theme">
             <#if user.theme == 1>
                 <option value="1">Light</option>
                 <option value="0">Dark</option>
@@ -26,13 +38,13 @@
             </#if>
         </select>
         <br>
-        <button type="submit">Save</button>
+        <button type="submit" class="butGray">Save</button>
     </form>
 
     <form action="/mainpage/${user.id}/animation" method="post">
         <br>
         <label for="animation">Animation:</label>
-        <select id="animation" name="animation">
+        <select class="select" id="animation" name="animation">
             <#if user.animation == 1>
                 <option value="1">Off</option>
                 <option value="0">On</option>
@@ -42,7 +54,7 @@
             </#if>
         </select>
         <br>
-        <button type="submit">Save</button>
+        <button type="submit" class="butGray">Save</button>
     </form>
 
 

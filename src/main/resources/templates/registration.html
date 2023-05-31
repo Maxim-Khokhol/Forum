@@ -6,14 +6,21 @@
     <link rel="stylesheet" href="/css/design.css">
 </head>
 <body>
-<form th:method="POST" th:action="@{/registration}"  th:object="${user}" class="box">
+<form th:method="POST" th:action="@{/registration}" th:object="${user}" class="box">
     <h1>Create new account</h1>
-    <input type="text"  th:field="*{username}" id="username" placeholder="Username" autocomplete="off" />
-    <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error </div>
-    <input type="text" th:field="*{email}" id="email" placeholder="email" autocomplete="off" />
-    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+    <input type="text" th:field="*{username}" id="username" placeholder="Username" autocomplete="off" />
+    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+         style="color: darkred; font-size: 18px; font-weight: bold">Username Error</div>
+    <div th:if="${user.usernameErrorMessage}" class="error" th:text="${user.usernameErrorMessage}"
+         style="color: darkred; font-size: 18px; font-weight: bold"></div>
+    <input type="text" th:field="*{email}" id="email" placeholder="Email" autocomplete="off" />
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+         style="color: darkred; font-size: 18px; font-weight: bold">Email Error</div>
+    <div th:if="${user.emailErrorMessage}" class="error" th:text="${user.emailErrorMessage}"
+         style="color: darkred; font-size: 18px; font-weight: bold"></div>
+
     <input type="password" th:field="*{password}" id="password" placeholder="Password"/>
-    <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+    <div style="color: darkred; font-size: 18px; font-weight: bold" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
     <input type="submit" value="Sign up" />
 </form>
 </body>

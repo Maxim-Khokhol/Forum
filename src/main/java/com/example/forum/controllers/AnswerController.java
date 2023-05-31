@@ -1,7 +1,6 @@
 package com.example.forum.controllers;
 
 import com.example.forum.models.Answer;
-import com.example.forum.models.User;
 import com.example.forum.services.AnswerService;
 import com.example.forum.services.ProblemService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +16,10 @@ import java.security.Principal;
 @Controller
 @RequiredArgsConstructor
 public class AnswerController {
+
     private final AnswerService answerService;
     private final ProblemService problemService;
+
     @PostMapping("/mainpage/answer/create")
     public String createAnswer(@RequestParam("answer") String answer, @RequestParam("idProblem") Long idProblem,
                                Principal principal) {
@@ -26,7 +27,9 @@ public class AnswerController {
         newAnswer.setAnswer(answer);
         newAnswer.setIdProblem(idProblem);
         answerService.saveAnswer(newAnswer, principal);
-        return "redirect:/mainpage";
+        String id = String.valueOf(idProblem);
+
+        return "redirect:/mainpage/problem/" + id;
     }
     @GetMapping("/mainpage/answer/{idQuestion}")
     private String answersInfo(@PathVariable Long idQuestion, Model model,Principal principal){

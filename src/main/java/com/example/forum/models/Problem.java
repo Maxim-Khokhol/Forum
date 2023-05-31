@@ -1,14 +1,10 @@
 package com.example.forum.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "problems")
@@ -22,6 +18,7 @@ public class Problem {
     @Column(name = "id")
     private Long id;
 
+    @Size(max = 150)
     @Column(name = "headline", columnDefinition = "text")
     private String headline;
 
