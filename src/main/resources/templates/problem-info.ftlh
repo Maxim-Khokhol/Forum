@@ -58,52 +58,60 @@ bottom: 10px; left: 3px; margin: 10px;">Go to answers ...</a>
 <div id="window3">
     <i onclick="show3('none')" class="ri-close-line"></i>
 
-        <#if user.username == problem.user.getUsername()>
-            <form action="/mainpage/problem/${problem.id}/delete" method="post" onsubmit="return confirmDelete(event)">
-                <button onsubmit="return confirmDelete()" class="button2" style="vertical-align:middle" type="submit"><span> Delete Question </span></button>
-            </form>
+    <#if user.username == problem.user.getUsername()>
+        <form action="/mainpage/problem/${problem.id}/delete" method="post" id="myForm">
+            <button class="button2" style="vertical-align:middle" type="submit"><span>Delete Question</span></button>
+        </form>
 
-            <a href="/mainpage/problem/${problem.id}/edit" class="button-link">Edit</a>
-            <a href="/mainpage/answer/${problem.id}" class="button-link">Go to answers ...</a>
-        <#elseif user.username != problem.user.getUsername()>
-            <#if problem.activity == 1>
+        <a href="/mainpage/problem/${problem.id}/edit" class="button-link">Edit</a>
+        <a href="/mainpage/answer/${problem.id}" class="button-link">Go to answers ...</a>
+    <#elseif user.username != problem.user.getUsername()>
+        <#if problem.activity == 1>
             <h3 style="font-size: 25px">Create new answer</h3>
             <form action="/mainpage/answer/create" method="POST">
-                <textarea name="answer" placeholder="answer" class="custom-textarea"></textarea><br>
-                <input type="hidden" name="idProblem" value="${problem.id}" /><br><br>
-                <button class="button" style="vertical-align:middle" type="submit"><span>Add Answer </span></button>
-            </form>
-                <a href="/mainpage/answer/${problem.id}" class="button-link">Go to answers ...</a>
-            </#if>
-        </#if>
-        <#assign hasAnswer = false>
-        <#list answers as answer>
-            <#if answer.idProblem == problem.id && answer.answer?? && !hasAnswer
-            && user.username == problem.user.getUsername()>
-                <#assign hasAnswer = true>
-                <h3>Start a dialogue</h3>
-                <form action="/mainpage/answer/create" method="POST">
+                <label>
                     <textarea name="answer" placeholder="answer" class="custom-textarea"></textarea>
-                    <input type="hidden" name="idProblem" value="${problem.id}" />
-                    <button class="button" style="vertical-align:middle" type="submit"><span>  Add Answer </span> </button>
-                </form>
-            </#if>
-        </#list>
+                </label><br>
+                <input type="hidden" name="idProblem" value="${problem.id}" /><br><br>
+                <button class="button" style="vertical-align:middle" type="submit"><span>Add Answer</span></button>
+            </form>
+            <a href="/mainpage/answer/${problem.id}" class="button-link">Go to answers ...</a>
+        </#if>
+    </#if>
+    <#assign hasAnswer = false>
+    <#list answers as answer>
+        <#if answer.idProblem == problem.id && answer.answer?? && !hasAnswer && user.username == problem.user.getUsername()>
+            <#assign hasAnswer = true>
+            <h3>Start a dialogue</h3>
+            <form action="/mainpage/answer/create" method="POST">
+                <label>
+                    <textarea name="answer" placeholder="answer" class="custom-textarea"></textarea>
+                </label>
+                <input type="hidden" name="idProblem" value="${problem.id}" />
+                <button class="button" style="vertical-align:middle" type="submit"><span>Add Answer</span></button>
+            </form>
+        </#if>
+    </#list>
 
 </div>
 
 <script>
     function show3(state){
         document.getElementById('window3').style.display = state;
+    }
 
-    }
-    function confirmDelete(event) {
-        const result = confirm("Are you sure you want to delete?");
-        if (!result) {
-            event.preventDefault();
+    const form = document.getElementById('myForm');
+
+    form.addEventListener('submit', function(event) {
+        // Запобігаємо відправленню форми
+        event.preventDefault();
+
+        // Додатковий код для обробки відправлення форми
+        if (confirm('Are you sure you want to delete the question?')) {
+            // Если подтверждено удаление, отправляем форму
+            form.submit();
         }
-        return result;
-    }
+    });
 </script>
 </body>
 </html>
